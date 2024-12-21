@@ -46,7 +46,7 @@ body:
     attributes:
       label: Mods
       description: >-
-        Run `/fabricmods` in console.
+        Please find the list in the log file (usually at the beginning, use search)
         <br>Try to remove unrelated mods before reporting
       placeholder: 'Mods list here'
       render: 'raw'

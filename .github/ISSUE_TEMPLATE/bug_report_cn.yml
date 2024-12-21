@@ -46,9 +46,9 @@ body:
     attributes:
       label: 模组列表
       description: >-
-        输入 `/fabricmods` 命令可获取相关信息
-        <br>如果想要你的问题快速解决，请自行排除无关的模组和插件
-        <br>只将有关此问题的模组和插件填入
+        请在日志文件里寻找模组列表（一般在文件前面，善用搜索）
+        <br>如果想要你的问题快速解决，请自行排除无关的模组
+        <br>只将有关此问题的模组填入
       placeholder: 模组列表
       render: raw
     validations:
