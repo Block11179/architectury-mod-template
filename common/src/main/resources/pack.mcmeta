@@ -1,6 +1,6 @@
 {
   "pack": {
-    "description": "${name} ${version}",
+    "description": "${name}",
     "pack_format": 15
   }
 }

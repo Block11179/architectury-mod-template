@@ -15,11 +15,9 @@ dependencies {
 }
 
 processResources {
-    inputs.property "version", project.version
     inputs.property "name", rootProject.mod_name
 
     filesMatching("pack.mcmeta") {
-        expand "version": project.version
         expand "name": rootProject.mod_name
     }
 }

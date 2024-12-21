@@ -86,7 +86,7 @@ processResources {
         inputs.property k, v
     }
 
-    filesMatching("fabric.mod.json") {
+    filesMatching("META-INF/mods.toml") {
         expand props
     }
 }
