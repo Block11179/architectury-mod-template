@@ -87,9 +87,7 @@ processResources {
     }
 
     filesMatching("fabric.mod.json") {
-        props.forEach { k, v ->
-            expand k, v
-        }
+        expand props
     }
 }
 
