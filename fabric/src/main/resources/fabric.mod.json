@@ -28,7 +28,7 @@
     ],
     "client": [
       // [Customize] (Remember to remove this line)
-      "net.examplemod.fabric.client.ExampleModFabricClient"
+      "net.examplemod.fabric.client.ExampleModClientFabric"
     ]
   },
   "mixins": [
