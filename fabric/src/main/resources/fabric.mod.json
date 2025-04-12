@@ -4,15 +4,10 @@
   "version": "${version}",
   "name": "${name}",
   "description": "${description}",
-
-  // [Customize] (Remember to remove this line)
   "authors": [
   ],
-
-  // [Customize] (Remember to remove this line)
   "contributors": [
   ],
-
   "contact": {
     "homepage": "${home_page}",
     "sources": "${sources_page}",
@@ -23,16 +18,16 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      // [Customize] (Remember to remove this line)
       "net.examplemod.fabric.ExampleModFabric"
     ],
     "client": [
-      // [Customize] (Remember to remove this line)
-      "net.examplemod.fabric.client.ExampleModClientFabric"
+      "net.examplemod.client.fabric.ExampleModClientFabric"
+    ],
+    "fabric-datagen": [
+      "net.examplemod.data.fabric.ExampleModDataGenerationFabric"
     ]
   },
   "mixins": [
-    // [Customize] (Remember to remove this line)
     "examplemod.mixins.json"
   ],
   "depends": {

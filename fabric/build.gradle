@@ -31,21 +31,6 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
-
-    // [Optional] Spark Lib
-    include(modImplementation("com.github.erha134.SparkLib:sparklib-fabric:${rootProject.sparklib_version}"))
-}
-
-String issues = rootProject.mod_issues_page
-
-if (issues.isEmpty()) {
-    issues = rootProject.mod_sources_page
-
-    if (issues.endsWith("/")) {
-        issues += "issues"
-    } else {
-        issues += "/issues"
-    }
 }
 
 def props = [
@@ -55,7 +40,7 @@ def props = [
     "description": rootProject.mod_description,
     "home_page": rootProject.mod_home_page,
     "sources_page": rootProject.mod_sources_page,
-    "issues_page": issues,
+    "issues_page": rootProject.mod_sources_page + "/issues",
     "license": rootProject.mod_license,
     "minecraft_dependency": rootProject.fabric_minecraft_dependency
 ]

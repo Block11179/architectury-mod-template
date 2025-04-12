@@ -2,7 +2,7 @@ plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
     id "dev.architectury.loom" version "1.7-SNAPSHOT" apply false
     
-    // [Optional] Forgix
+    // Forgix
     // id "io.github.pacifistmc.forgix" version "1.2.9"
 }
 
@@ -34,20 +34,12 @@ subprojects {
         maven {
             url = "https://jitpack.io/"
         }
-        maven {
-            url = "https://maven.terraformersmc.com/releases/"
-        }
-        maven {
-            url = "https://maven.ladysnake.org/releases/"
-        }
     }
 
     dependencies {
         minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
         mappings "net.fabricmc:yarn:${rootProject.yarn_mappings}:v2"
 
-        // [Optional] Other dependencies
-        implementation "com.google.code.findbugs:jsr305:${rootProject.jsr305_version}"
         annotationProcessor(compileOnly("org.projectlombok:lombok:${rootProject.lombok_version}"))
     }
 }
@@ -94,7 +86,6 @@ allprojects {
     }
 }
 
-// [Optional] Forgix
 // forgix {
 //     group = rootProject.maven_group
 //     mergedJarName = rootProject.archives_base_name + "-" + rootProject.minecraft_version + "-" + rootProject.mod_version + ".jar" // (Required Value)

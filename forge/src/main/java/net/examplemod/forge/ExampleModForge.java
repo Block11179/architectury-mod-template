@@ -1,11 +1,10 @@
 package net.examplemod.forge;
 
 import dev.architectury.platform.forge.EventBuses;
-import io.github.erha134.mc.sparklib.data.forge.SDataGenerationForge;
+// import io.github.erha134.mc.sparklib.data.forge.SDataGenerationForge;
 import net.examplemod.ExampleMod;
 import net.examplemod.client.ExampleModClient;
-import net.examplemod.data.ExampleModDataGeneration;
-import net.minecraftforge.api.distmarker.Dist;
+// import net.examplemod.data.ExampleModDataGeneration;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -27,6 +26,6 @@ public final class ExampleModForge {
     }
 
     private void onDataGen(GatherDataEvent e) {
-        ExampleModDataGeneration.initDataGen(SDataGenerationForge.create(ExampleMod.MOD_ID, e));
+        // ExampleModDataGeneration.initDataGen(SDataGenerationForge.create(ExampleMod.MOD_ID, e));
     }
 }
