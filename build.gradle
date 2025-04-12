@@ -1,7 +1,7 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
     id "dev.architectury.loom" version "1.7-SNAPSHOT" apply false
-    
+    id "com.github.johnrengelman.shadow" version "8.1.1" apply false
     // Forgix
     // id "io.github.pacifistmc.forgix" version "1.2.9"
 }
@@ -10,8 +10,44 @@ architectury {
     minecraft = rootProject.minecraft_version
 }
 
+allprojects {
+    apply plugin: "java"
+    apply plugin: "architectury-plugin"
+
+    version = rootProject.minecraft_version + "-" + rootProject.mod_version
+    group = rootProject.maven_group
+
+    repositories {
+        // Add repositories to retrieve artifacts from in here.
+        // You should only use this when depending on other mods because
+        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+        // for more information about repositories.
+        mavenCentral()
+    }
+
+    tasks.withType(JavaCompile) {
+        it.options.encoding = "UTF-8"
+        it.options.release = 17
+        it.options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
+    }
+
+    compileJava.dependsOn clean
+
+    java {
+        withSourcesJar()
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+}
+
 subprojects {
     apply plugin: "dev.architectury.loom"
+    apply plugin: "maven-publish"
+
+    base {
+        archivesName = rootProject.archives_base_name + "-" + project.name
+    }
 
     loom {
         setEnableTransitiveAccessWideners true
@@ -42,42 +78,15 @@ subprojects {
 
         annotationProcessor(compileOnly("org.projectlombok:lombok:${rootProject.lombok_version}"))
     }
-}
-
-allprojects {
-    apply plugin: "java"
-    apply plugin: "architectury-plugin"
-    apply plugin: "maven-publish"
-
-    base {
-        archivesName = rootProject.archives_base_name + "-" + project.name
-    }
-
-    version = rootProject.minecraft_version + "-" + rootProject.mod_version
-    group = rootProject.maven_group
-
-    repositories {
-        // Add repositories to retrieve artifacts from in here.
-        // You should only use this when depending on other mods because
-        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
-        // for more information about repositories.
-        mavenCentral()
-    }
-
-    tasks.withType(JavaCompile) {
-        options.encoding = "UTF-8"
-        options.release = 17
-        options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
-    }
-
-    compileJava.dependsOn clean
-
-    java {
-        withSourcesJar()
-    }
 
     publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+                artifactId = base.archivesName.get()
+            }
+        }
+
         // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
         repositories {
             // Add repositories to publish to here.
@@ -90,14 +99,14 @@ allprojects {
 //     group = rootProject.maven_group
 //     mergedJarName = rootProject.archives_base_name + "-" + rootProject.minecraft_version + "-" + rootProject.mod_version + ".jar" // (Required Value)
 //     outputDir = "build/libs/merged"
-
+//
 //     forge {
 //         projectName = "forge"
 //         jarLocation = "build/libs/" + rootProject.archives_base_name + "-forge-" + rootProject.minecraft_version + "-" + rootProject.mod_version + ".jar"
-
+//
 //         mixin "${rootProject.mod_id}.mixins.json"
 //     }
-
+//
 //     fabric {
 //         projectName = "fabric"
 //         jarLocation = "build/libs/" + rootProject.archives_base_name + "-fabric-" + rootProject.minecraft_version + "-" + rootProject.mod_version + ".jar"

@@ -8,10 +8,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(TitleScreen.class)
 public abstract class MixinTitleScreen {
-    @Inject(method = "init()V",
+    @Inject(
+            method = "init()V",
             at = @At("HEAD")
     )
     private void init(CallbackInfo info) {
-        System.out.println("Hello from example architectury common mixin!");
+        System.out.println("Hello world!");
     }
 }

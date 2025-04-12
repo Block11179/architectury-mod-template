@@ -1,6 +1,4 @@
-plugins {
-    id "com.github.johnrengelman.shadow" version "8.1.1"
-}
+apply plugin: "com.github.johnrengelman.shadow"
 
 architectury {
     platformSetupLoomIde()
@@ -28,7 +26,7 @@ loom {
     runs {
         data {
             data()
-            programArgs "--all", "--mod", "blockylib"
+            programArgs "--all", "--mod", "examplemod"
             programArgs "--output", generatedResources.absolutePath
 //            property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
         }
@@ -101,14 +99,5 @@ sourcesJar {
 components.java {
     withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
         skip()
-    }
-}
-
-publishing {
-    publications {
-        mavenForge(MavenPublication) {
-            artifactId = rootProject.archives_base_name + "-" + project.name
-            from components.java
-        }
     }
 }

@@ -1,6 +1,4 @@
-plugins {
-    id "com.github.johnrengelman.shadow" version "8.1.1"
-}
+apply plugin: "com.github.johnrengelman.shadow"
 
 architectury {
     platformSetupLoomIde()
@@ -77,14 +75,5 @@ sourcesJar {
 components.java {
     withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
         skip()
-    }
-}
-
-publishing {
-    publications {
-        mavenFabric(MavenPublication) {
-            artifactId = rootProject.archives_base_name + "-" + project.name
-            from components.java
-        }
     }
 }
